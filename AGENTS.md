@@ -20,7 +20,7 @@ These names are user-facing and easy to conflate. Use them exactly as written; d
 
 The plugin description is a single shared string, byte-identical across all five manifests. Change it in one place and propagate it to the other four.
 
-**`devtools` is a frozen identifier, not a name.** It is the plugin id, the MCP server key in every `mcp.json`, the `mcp__devtools__devtools_*` tool namespace in all nine skills' `allowed-tools`, the `plugins/devtools/` path, and the `devtools@facebook` install target. It is pinned to the MCP endpoint `https://mcp.facebook.com/devtools`, so it does not follow display-name changes. Renaming it breaks existing installs.
+**`devtools` is a frozen identifier, not a name.** It is the plugin id, the MCP server key in every `mcp.json`, the `mcp__devtools__devtools_*` tool namespace in all ten skills' `allowed-tools`, the `plugins/devtools/` path, and the `devtools@facebook` install target. It is pinned to the MCP endpoint `https://mcp.facebook.com/devtools`, so it does not follow display-name changes. Renaming it breaks existing installs.
 
 ## How this repo is organized
 
@@ -42,6 +42,8 @@ Skills follow the open [Agent Skills standard](https://agentskills.io) (`SKILL.m
 
 All skills require the **Meta Social Technologies MCP** server to be connected — formerly named **Meta Developer Tools MCP**; the endpoint, the `devtools` plugin id, and the `devtools_` tool name prefix are unchanged. This is a remote streamable-HTTP server (`https://mcp.facebook.com/devtools`). There is no standalone CLI — the skills drive the MCP for all their work, so it must be connected first.
 
+One skill, `whatsapp-business-integration`, additionally requires the **WhatsApp Business Tools MCP** (`whatsapp_business_tools` at `https://mcp.facebook.com/whatsapp_business_tools`, tools prefixed `whatsapp_biz_`). It is a second, separately-gated streamable-HTTP server. The plugin does not bundle it, so add it to your agent's MCP config yourself (see README). The two servers share no session: a skill spanning both carries `app_id` and `business_id` across them itself.
+
 - **Claude Code**: `claude plugin marketplace add facebook/agentic-tools` then `claude plugin install devtools@facebook`; connect with `/mcp`. The MCP config is bundled in the plugin's `.mcp.json`.
 - **Cursor**: install the `devtools` plugin from the Cursor marketplace (or load it locally from `~/.cursor/plugins/local/` while testing). The plugin auto-discovers the skills and the **Meta Social Technologies MCP** (`devtools`) from its bundled `mcp.json`; authenticate the MCP from Settings → MCP on first use.
 - **Codex**: install via `$skill-installer`, and add the MCP to `~/.codex/config.toml` (see README).
@@ -59,6 +61,7 @@ All skills require the **Meta Social Technologies MCP** server to be connected �
 | api-integration | `plugins/devtools/skills/api-integration/` | Guides a developer through setting up a new Meta API integration — discovers APIs, fetches setup guides, authentication, permissions, and code examples. |
 | search-docs | `plugins/devtools/skills/search-docs/` | Searches Meta developer documentation for API guides, references, and tutorials. |
 | debug-access-token | `plugins/devtools/skills/debug-access-token/` | Diagnoses an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context — guides the developer to inspect it via the web debugger or `debug_token` API and interprets the returned metadata. |
+| whatsapp-business-integration | `plugins/devtools/skills/whatsapp-business-integration/` | Drives a WhatsApp Business integration end to end — app prerequisites, business gates, phone onboarding, webhooks, template, first message. The only skill that spans both MCP servers. |
 
 ## Directory structure
 
@@ -93,7 +96,8 @@ All skills require the **Meta Social Technologies MCP** server to be connected �
 │       │   ├── api-health/
 │       │   ├── api-integration/
 │       │   ├── search-docs/
-│       │   └── debug-access-token/
+│       │   ├── debug-access-token/
+│       │   └── whatsapp-business-integration/
 │       └── hooks/                # Session hooks (+ session-context.json)
 ├── AGENTS.md                    # This file
 ├── CLAUDE.md                    # Symlink → AGENTS.md

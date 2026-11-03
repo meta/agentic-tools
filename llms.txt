@@ -32,5 +32,8 @@ Guide a developer through setting up a Meta API integration (WhatsApp, Instagram
 ### Search Docs
 Search Meta developer documentation with refined queries. Synthesize answers from results rather than just listing links.
 
+### WhatsApp Business Integration
+Set up WhatsApp Business messaging end to end: app, business link, phone number, webhooks, template and first message. Needs both the devtools and whatsapp_business_tools MCP servers. Start with whatsapp_biz_businesses and whatsapp_biz_onboarding_status to resume rather than redo.
+
 ### Debug Access Token
 Diagnose why a Meta access token is failing (expired, wrong scopes, wrong app, invalid) without the raw token ever entering the agent or AI provider context. Guide the developer to inspect the token themselves via the Access Token Debugger web tool or the public debug_token Graph API, then interpret only the redacted metadata they bring back.

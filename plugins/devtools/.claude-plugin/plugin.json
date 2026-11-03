@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "devtools",
-  "description": "Guided workflows for developers building apps and integrations on the Meta Social Technologies Developer Platform (developers.facebook.com): settings, webhooks, compliance, app review, and API health. Requires the Meta Social Technologies MCP (formerly Meta Developer Tools MCP).",
+  "description": "Guided workflows for developers building apps and integrations on the Meta Social Technologies Developer Platform (developers.facebook.com): settings, webhooks, compliance, app review, and API health. Requires the Meta Social Technologies MCP (formerly Meta Developer Tools MCP). WhatsApp Business setup also requires the WhatsApp Business Tools MCP (https://mcp.facebook.com/whatsapp_business_tools).",
   "version": "0.1.0",
   "author": {
     "name": "Meta Platforms, Inc."
@@ -17,7 +17,8 @@
     "app-review",
     "compliance",
     "api-health",
-    "developer-platform"
+    "developer-platform",
+    "whatsapp"
   ],
   "skills": [
     "./skills/"

@@ -8,6 +8,8 @@
 This repo is structured as a **multi-plugin marketplace**: each product group ships as a self-contained plugin under `plugins/`, so it can host additional developer plugins alongside the first one, the **Meta Social Technologies Developer** plugin (`devtools`). The skills follow the open [Agent Skills standard](https://agentskills.io) (`SKILL.md`), so the same skills work in **Claude Code, Cursor, and Codex**.
 
 > All skills call the remote **Meta Social Technologies MCP** server (`https://mcp.facebook.com/devtools`). There is no standalone CLI — the skills drive the MCP for all their work, so connect it after install.
+>
+> `whatsapp-business-integration` also needs the **WhatsApp Business Tools MCP** (`https://mcp.facebook.com/whatsapp_business_tools`). The plugin does not bundle it: add it to your agent's MCP config as shown under [Install via Vercel](#install-via-vercel-skillssh).
 
 ## Installation
 
@@ -46,6 +48,9 @@ Then add the **Meta Social Technologies MCP** server to `~/.codex/config.toml`:
 ```toml
 [mcp_servers.devtools]
 url = "https://mcp.facebook.com/devtools"
+
+[mcp_servers.whatsapp_business_tools]
+url = "https://mcp.facebook.com/whatsapp_business_tools"
 ```
 
 Codex will run its OAuth flow on first use. Restart Codex after editing the config.
@@ -65,7 +70,7 @@ npx skills add facebook/agentic-tools --skill '*'
 > [!WARNING]
 > This installs the skill text only. It does NOT install or authenticate the MCP server — you must add it separately, or the skills cannot run.
 
-Add the **Meta Social Technologies MCP** server to your agent's MCP config:
+Add the **Meta Social Technologies MCP** server to your agent's MCP config. For `whatsapp-business-integration`, also add the **WhatsApp Business Tools MCP** server:
 
 ```json
 {
@@ -73,12 +78,16 @@ Add the **Meta Social Technologies MCP** server to your agent's MCP config:
     "devtools": {
       "type": "streamable-http",
       "url": "https://mcp.facebook.com/devtools"
+    },
+    "whatsapp_business_tools": {
+      "type": "streamable-http",
+      "url": "https://mcp.facebook.com/whatsapp_business_tools"
     }
   }
 }
 ```
 
-Then complete the OAuth flow in your own agent (for example `/mcp` in Claude Code), and restart or reload the agent if it does not pick up the new server.
+Then complete the OAuth flow for each server in your own agent (for example `/mcp` in Claude Code), and restart or reload the agent if it does not pick up the new server.
 
 The skills live under `plugins/devtools/skills/` rather than a top-level `skills/` folder. If `npx skills add facebook/agentic-tools -l` reports no skills, name one with `--skill <name>` or pass `--full-depth`.
 
@@ -95,6 +104,7 @@ The skills live under `plugins/devtools/skills/` rather than a top-level `skills
 | `/api-integration` | Start a new API integration — fetches setup guides, auth, permissions, and code examples |
 | `/search-docs` | Search Meta developer documentation for API guides and references |
 | `/debug-access-token` | Diagnose an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context |
+| `/whatsapp-business-integration` | Set up WhatsApp Business messaging end to end, from the app to the first sent message |
 
 ## Architecture
 
@@ -129,7 +139,8 @@ agentic-tools/
         │   ├── api-health/
         │   ├── api-integration/
         │   ├── search-docs/
-        │   └── debug-access-token/
+        │   ├── debug-access-token/
+        │   └── whatsapp-business-integration/
         └── hooks/
             ├── session-init.sh       # Session-start hook
             └── session-context.json  # Context injected at session start
