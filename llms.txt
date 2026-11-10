@@ -4,7 +4,7 @@
 
 ## MCP Tools
 
-The skills call the Meta Social Technologies MCP server. The current tool list is discovered from the MCP server when it's connected — see the [Meta Social Technologies MCP documentation](https://developers.facebook.com/documentation/mcp/devtools-mcp) for reference.
+The skills discover tools from their required connected MCP servers. Developer Platform workflows use `devtools`; `whatsapp-business-marketing-messages-max-price-setup` uses only `whatsapp_business_tools`, which must be added and authenticated separately. Installing a skill does not connect MCP.
 
 ## Workflows
 
@@ -34,6 +34,9 @@ Search Meta developer documentation with refined queries. Synthesize answers fro
 
 ### WhatsApp Business Integration
 Set up WhatsApp Business messaging end to end: app, business link, phone number, webhooks, template and first message. Needs both the devtools and whatsapp_business_tools MCP servers. Start with whatsapp_biz_businesses and whatsapp_biz_onboarding_status to resume rather than redo.
+
+### Max Price Setup
+Grouped under plugins/devtools/skills/marketing-messages/whatsapp-business-marketing-messages-max-price-setup alongside the existing flat skills. Claude/Cursor declare both skill roots; Codex retains its recursive root. The grouping folder is not a skill and does not change the namespaced leaf identity. Uses only whatsapp_business_tools and declares it in metadata.mcp. Discover tools before deciding the connection is missing. Establish the selected business/account, inspect the template, explain holiday/cohort choices, collect explicit pricing, preview, approve the exact settings, and verify the applied result. Preserve content and omitted settings; no invented numeric policy, automatic restoration or message sending.
 
 ### Debug Access Token
 Diagnose why a Meta access token is failing (expired, wrong scopes, wrong app, invalid) without the raw token ever entering the agent or AI provider context. Guide the developer to inspect the token themselves via the Access Token Debugger web tool or the public debug_token Graph API, then interpret only the redacted metadata they bring back.

@@ -7,9 +7,9 @@
 
 This repo is structured as a **multi-plugin marketplace**: each product group ships as a self-contained plugin under `plugins/`, so it can host additional developer plugins alongside the first one, the **Meta Social Technologies Developer** plugin (`devtools`). The skills follow the open [Agent Skills standard](https://agentskills.io) (`SKILL.md`), so the same skills work in **Claude Code, Cursor, and Codex**.
 
-> All skills call the remote **Meta Social Technologies MCP** server (`https://mcp.facebook.com/devtools`). There is no standalone CLI — the skills drive the MCP for all their work, so connect it after install.
+> Developer Platform workflows call **Meta Social Technologies MCP** (`https://mcp.facebook.com/devtools`). `whatsapp-business-integration` spans it and **WhatsApp Business Tools MCP**; `whatsapp-business-marketing-messages-max-price-setup` uses only the WhatsApp server.
 >
-> `whatsapp-business-integration` also needs the **WhatsApp Business Tools MCP** (`https://mcp.facebook.com/whatsapp_business_tools`). The plugin does not bundle it: add it to your agent's MCP config as shown under [Install via Vercel](#install-via-vercel-skillssh).
+> The `devtools` plugin does not bundle WhatsApp Business Tools MCP (`https://mcp.facebook.com/whatsapp_business_tools`). Add and authenticate that server separately as shown under [Install via Vercel](#install-via-vercel-skillssh), following each skill's declared dependencies.
 
 ## Installation
 
@@ -55,6 +55,14 @@ url = "https://mcp.facebook.com/whatsapp_business_tools"
 
 Codex will run its OAuth flow on first use. Restart Codex after editing the config.
 
+## WhatsApp Max Price
+
+`whatsapp-business-marketing-messages-max-price-setup` is grouped under `plugins/devtools/skills/marketing-messages/`. The leaf name and command identity are unchanged. Claude and Cursor explicitly scan both `./skills/` and `./skills/marketing-messages/` so existing flat skills remain available; Codex retains its recursive `./skills/` root. The grouping folder has no `SKILL.md`, inherited instructions or automatic namespace. Install the existing `devtools` plugin, or install just the skill from `meta/agentic-tools` with your client's skill installer. The repository organization does not rename the existing `facebook` marketplace ID or `devtools@facebook` plugin identifier.
+
+Add `whatsapp_business_tools` at `https://mcp.facebook.com/whatsapp_business_tools` and complete OAuth in your client. The skill declares this dependency in `metadata.mcp`; installation does not authenticate it or grant Max Price eligibility. You can connect MCP first and then invoke the installed skill. Some clients require a reload. Without the skill, the existing template tools retain their guidance and confirmation gates.
+
+The skill explains holiday and cohort-expansion choices and configures explicitly approved Max Price settings through the existing template tools. It does not fetch live rate cards, invent numeric recommendations, schedule price changes, or send messages. For new account/phone setup, use `whatsapp-business-integration` separately.
+
 ## Install via Vercel (skills.sh)
 
 The skills are also listed on Vercel's skills directory, [skills.sh](https://skills.sh/facebook/agentic-tools), and install with the `skills` CLI into any agent it supports:
@@ -70,17 +78,17 @@ npx skills add facebook/agentic-tools --skill '*'
 > [!WARNING]
 > This installs the skill text only. It does NOT install or authenticate the MCP server — you must add it separately, or the skills cannot run.
 
-Add the **Meta Social Technologies MCP** server to your agent's MCP config. For `whatsapp-business-integration`, also add the **WhatsApp Business Tools MCP** server:
+Add the servers each installed skill requires. `whatsapp-business-integration` uses both servers below; `whatsapp-business-marketing-messages-max-price-setup` needs only `whatsapp_business_tools`. The example uses Claude Code's `http` transport name; for Cursor, omit `type` and keep each URL.
 
 ```json
 {
   "mcpServers": {
     "devtools": {
-      "type": "streamable-http",
+      "type": "http",
       "url": "https://mcp.facebook.com/devtools"
     },
     "whatsapp_business_tools": {
-      "type": "streamable-http",
+      "type": "http",
       "url": "https://mcp.facebook.com/whatsapp_business_tools"
     }
   }
@@ -105,6 +113,7 @@ The skills live under `plugins/devtools/skills/` rather than a top-level `skills
 | `/search-docs` | Search Meta developer documentation for API guides and references |
 | `/debug-access-token` | Diagnose an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context |
 | `/whatsapp-business-integration` | Set up WhatsApp Business messaging end to end, from the app to the first sent message |
+| `/whatsapp-business-marketing-messages-max-price-setup` | Explain holiday/cohort choices and configure explicitly approved Max Price settings for Direct sends; WhatsApp MCP only |
 
 ## Architecture
 
@@ -140,7 +149,11 @@ agentic-tools/
         │   ├── api-integration/
         │   ├── search-docs/
         │   ├── debug-access-token/
-        │   └── whatsapp-business-integration/
+        │   ├── whatsapp-business-integration/
+        │   └── marketing-messages/
+        │       └── whatsapp-business-marketing-messages-max-price-setup/
+        │           ├── SKILL.md
+        │           └── references/scenarios.md
         └── hooks/
             ├── session-init.sh       # Session-start hook
             └── session-context.json  # Context injected at session start

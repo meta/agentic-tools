@@ -1,7 +1,6 @@
 {
   "mcpServers": {
     "devtools": {
-      "type": "streamable-http",
       "url": "https://mcp.facebook.com/devtools"
     }
   }
