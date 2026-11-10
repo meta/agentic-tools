@@ -60,11 +60,7 @@ Tools may be lazily loaded. Call `ToolSearch` for `devtools_app_create` and `wha
 
    `unknown` means the check could not run, not that the step is undone. Re-run before acting on it. `info` is reported but not tracked, so it never blocks.
 
-3. **Set up the app** (`devtools`). Skip if the business already has a WhatsApp app.
-   - **Business.** `devtools_business_list`; use one with `can_add_assets` true, and if more than one qualifies, ask the user which before linking or creating anything. Otherwise `devtools_business_create` with `name`, `first_name`, `last_name`, `contact_email`, `website_url`, `street1`, `city` and `country`. A business created with these fields starts with a complete profile. Creating one needs DevTools access to all current and future businesses; if it is refused, ask the user to re-authenticate DevTools with that option. Tell the user right away that the WhatsApp MCP will not see the new business until they reconnect it and grant that business (step 4).
-   - **App.** `devtools_app_create` with `name` and `contact_email`. The name must be at most 30 characters and must not contain Meta trademarks such as "Facebook", "Instagram", "FB" or "Insta", or confusingly similar terms. If the call errors, check `devtools_app_list` before retrying so you do not create a duplicate.
-   - **Link.** `devtools_app_business_manage` action `link_app_to_business`. An app already owned by a business cannot move to another one: if that business is stuck, create a new business and a new app.
-   - **Use case.** `devtools_app_use_cases_manage` action `add_use_case` with `use_case_key` `WHATSAPP_BUSINESS_MESSAGING`. It needs the business link first. Add it before any other use case, then confirm with `devtools_app_use_cases` action `list_configured`.
+3. **Set up the app** (`devtools`). Skip if the business already has a WhatsApp app. Otherwise run the `app-setup` skill with the business from step 2, if there is one (the WhatsApp MCP sees only that one), and `WHATSAPP_BUSINESS_MESSAGING` as the first and main use case. Continue with the `app_id` and `business_id` it hands back. If it created a new business, tell the user right away that the WhatsApp MCP will not see it until they reconnect it and grant that business (step 4).
 
 4. **Clear the business gates.** These need the user; there is no tool for them. Re-run `whatsapp_biz_businesses` after each one.
    - Business not listed: the WhatsApp MCP only sees businesses granted during its OAuth consent. Ask the user to re-authenticate the WhatsApp MCP and either include this business or allow all businesses.
@@ -102,4 +98,4 @@ Tools may be lazily loaded. Call `ToolSearch` for `devtools_app_create` and `wha
 
 - Steps that need the user: WhatsApp MCP access to a new business, profile, terms, verification code, PIN if asked, app publishing and payment method. Ask for the ones you can see coming together.
 - If the user has several businesses, ask which one to use. Do not pick for them.
-- Related skills: `/webhook-setup`, `/app-review-prep`, `/debug-access-token`, `/api-health`.
+- Related skills: `/app-setup`, `/webhook-setup`, `/app-review-prep`, `/debug-access-token`, `/api-health`.
