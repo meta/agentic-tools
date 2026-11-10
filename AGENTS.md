@@ -20,7 +20,7 @@ These names are user-facing and easy to conflate. Use them exactly as written; d
 
 The plugin description is a single shared string, byte-identical across all five manifests. Change it in one place and propagate it to the other four.
 
-**`devtools` is a frozen identifier, not a name.** It is the plugin id, the MCP server key in every `mcp.json`, the `mcp__devtools__devtools_*` tool namespace in all ten skills' `allowed-tools`, the `plugins/devtools/` path, and the `devtools@facebook` install target. It is pinned to the MCP endpoint `https://mcp.facebook.com/devtools`, so it does not follow display-name changes. Renaming it breaks existing installs.
+**`devtools` is a frozen identifier, not a name.** It is the plugin id, the MCP server key in every `mcp.json`, the `mcp__devtools__devtools_*` tool namespace in the eleven Developer Platform skills' `allowed-tools`, the `plugins/devtools/` path, and the `devtools@facebook` install target. It is pinned to the MCP endpoint `https://mcp.facebook.com/devtools`, so it does not follow display-name changes. Renaming it breaks existing installs.
 
 ## How this repo is organized
 
@@ -62,6 +62,7 @@ Developer Platform skills require **Meta Social Technologies MCP** (`https://mcp
 | search-docs | `plugins/devtools/skills/search-docs/` | Searches Meta developer documentation for API guides, references, and tutorials. |
 | debug-access-token | `plugins/devtools/skills/debug-access-token/` | Diagnoses an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context — guides the developer to inspect it via the web debugger or `debug_token` API and interprets the returned metadata. |
 | whatsapp-business-integration | `plugins/devtools/skills/whatsapp-business-integration/` | Drives a WhatsApp Business integration end to end — app prerequisites, business gates, phone onboarding, webhooks, template, first message. The only skill that spans both MCP servers. |
+| app-setup | `plugins/devtools/skills/app-setup/` | Sets up an app for a product integration — creates or picks the app, connects it to a business portfolio, and adds the use cases it needs. Other product skills can run it first and continue with the `app_id` and `business_id` it reports. |
 | whatsapp-business-marketing-messages-max-price-setup | `plugins/devtools/skills/marketing-messages/whatsapp-business-marketing-messages-max-price-setup/` | Explains holiday/cohort choices and configures explicitly approved Max Price settings for Direct sends; uses only WhatsApp MCP. |
 
 ## Directory structure
@@ -99,6 +100,7 @@ Developer Platform skills require **Meta Social Technologies MCP** (`https://mcp
 │       │   ├── search-docs/
 │       │   ├── debug-access-token/
 │       │   ├── whatsapp-business-integration/
+│       │   ├── app-setup/
 │       │   └── marketing-messages/
 │       │       └── whatsapp-business-marketing-messages-max-price-setup/
 │       │           ├── SKILL.md

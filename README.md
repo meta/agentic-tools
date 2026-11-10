@@ -113,6 +113,7 @@ The skills live under `plugins/devtools/skills/` rather than a top-level `skills
 | `/search-docs` | Search Meta developer documentation for API guides and references |
 | `/debug-access-token` | Diagnose an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context |
 | `/whatsapp-business-integration` | Set up WhatsApp Business messaging end to end, from the app to the first sent message |
+| `/app-setup` | Set up an app for a product integration — create or pick the app, connect a business portfolio, and add use cases |
 | `/whatsapp-business-marketing-messages-max-price-setup` | Explain holiday/cohort choices and configure explicitly approved Max Price settings for Direct sends; WhatsApp MCP only |
 
 ## Architecture
@@ -150,6 +151,7 @@ agentic-tools/
         │   ├── search-docs/
         │   ├── debug-access-token/
         │   ├── whatsapp-business-integration/
+        │   ├── app-setup/
         │   └── marketing-messages/
         │       └── whatsapp-business-marketing-messages-max-price-setup/
         │           ├── SKILL.md
