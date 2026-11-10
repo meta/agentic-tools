@@ -102,7 +102,9 @@ Developer Platform skills require **Meta Social Technologies MCP** (`https://mcp
 │       │   └── marketing-messages/
 │       │       └── whatsapp-business-marketing-messages-max-price-setup/
 │       │           ├── SKILL.md
-│       │           └── references/scenarios.md
+│       │           └── references/
+│       │               ├── scenarios.md
+│       │               └── holiday-2026.md
 │       └── hooks/                # Session hooks (+ session-context.json)
 ├── AGENTS.md                    # This file
 ├── CLAUDE.md                    # Symlink → AGENTS.md

@@ -61,7 +61,7 @@ Codex will run its OAuth flow on first use. Restart Codex after editing the conf
 
 Add `whatsapp_business_tools` at `https://mcp.facebook.com/whatsapp_business_tools` and complete OAuth in your client. The skill declares this dependency in `metadata.mcp`; installation does not authenticate it or grant Max Price eligibility. You can connect MCP first and then invoke the installed skill. Some clients require a reload. Without the skill, the existing template tools retain their guidance and confirmation gates.
 
-The skill explains holiday and cohort-expansion choices and configures explicitly approved Max Price settings through the existing template tools. It does not fetch live rate cards, invent numeric recommendations, schedule price changes, or send messages. For new account/phone setup, use `whatsapp-business-integration` separately.
+The skill uses the Holiday 2026 guide for ladder-up/leap strategies, newly opted-in versus dormant cohort advice, and country-specific A/B test planning. Recommendations are relative to current published rates, not automatic country overrides or resolved monetary bids. Live rates, reach estimates and monetary normalization are not supplied by the current account/template tools; missing inputs require a strategy explanation or explicit-value fallback. Exact-preview approval remains mandatory. The skill does not schedule price changes or send messages. For new account/phone setup, use `whatsapp-business-integration` separately.
 
 ## Install via Vercel (skills.sh)
 
@@ -153,7 +153,9 @@ agentic-tools/
         │   └── marketing-messages/
         │       └── whatsapp-business-marketing-messages-max-price-setup/
         │           ├── SKILL.md
-        │           └── references/scenarios.md
+        │           └── references/
+        │               ├── scenarios.md
+        │               └── holiday-2026.md
         └── hooks/
             ├── session-init.sh       # Session-start hook
             └── session-context.json  # Context injected at session start

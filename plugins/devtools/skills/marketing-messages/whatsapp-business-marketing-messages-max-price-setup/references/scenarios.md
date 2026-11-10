@@ -1,12 +1,12 @@
 # Holiday and expansion guidance
 
-Read this before step 4 of `whatsapp-business-marketing-messages-max-price-setup`. This guide supplies scenario reasoning, not a numeric pricing policy. The currently available account/template tools cannot calculate an evidence-backed holiday uplift or a cohort-specific optimal bid.
+Read this and `holiday-2026.md` before step 4 of `whatsapp-business-marketing-messages-max-price-setup`. The Holiday 2026 reference supplies guide-backed rate-relative strategies and test factors. This file guards country/cohort scope and explicit-value setup; the account/template tools still cannot fetch a live rate card or reach estimate, or normalize those factors into monetary write arguments.
 
 ## Holiday promotion
 
 Collect the destination countries, actual occasion/date window, selected template, current bid/overrides, business objective and explicit financial limits. Ask for the business's intended dates and timezone; do not invent holiday dates or assume a send window from calendar memory. Ask for aggregate historical delivery/cost/outcome context only if the business has it; do not ask for recipient-level data.
 
-A useful recommendation explains the choice:
+First classify the audience using `holiday-2026.md`: high-value holiday audiences may use ladder-up or leap; newly opted-in cohorts favor exploring above-rate pricing, while dormant/lightly engaged cohorts favor below-rate exploration. Use comparable estimates where supported and stop at the guide's target, plateau, cap or lowest observed tested price boundary. When live inputs or normalization are missing, explain that limitation and the business's explicit-value choices:
 
 - If the business wants to retain its present ceiling or has no evidence supporting a change, explain retaining the current setting as an option. Do not claim it is optimal or guarantees the desired reach.
 - If the business explicitly wants to prioritize delivery and is willing to increase its ceiling, explain the trade-off and collect its chosen bid or country multiplier. Holiday context alone does not pick that number.
