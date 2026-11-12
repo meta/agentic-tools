@@ -52,12 +52,12 @@ Developer Platform skills require **Meta Social Technologies MCP** (`https://mcp
 
 | Skill | Directory | When to use |
 |-------|-----------|-------------|
-| app-health-check | `plugins/devtools/skills/app-health-check/` | Runs a comprehensive audit of a Meta app — settings, security, compliance, app review, rate limits, and API deprecations in one pass. |
+| app-health-check | `plugins/devtools/skills/app-health-check/` | Runs a comprehensive audit of a Meta app — settings, security, compliance, app review, rate limits, and a shared Graph API version-deprecation check in one pass (not an audit of actual API calls). |
 | webhook-setup | `plugins/devtools/skills/webhook-setup/` | Sets up webhooks end-to-end — discovers topics, subscribes to fields, and verifies with a test payload. |
 | app-review-prep | `plugins/devtools/skills/app-review-prep/` | Prepares a Meta app for App Review — checks status, requirements, privileges, submission history, and compliance blockers. |
 | debug-webhooks | `plugins/devtools/skills/debug-webhooks/` | Troubleshoots webhook delivery issues — inspects subscriptions, sends test payloads, diagnoses misconfigurations. |
 | compliance-check | `plugins/devtools/skills/compliance-check/` | Audits compliance posture — surfaces violations, required actions, and recommendations with remediation guidance. |
-| api-health | `plugins/devtools/skills/api-health/` | Monitors API health — checks rate limits, call volume, and API deprecations with actionable thresholds. |
+| api-health | `plugins/devtools/skills/api-health/` | Monitors API health — checks rate limits, call volume, and the shared Graph API version-deprecation policy, not all APIs the app uses. |
 | api-integration | `plugins/devtools/skills/api-integration/` | Guides a developer through setting up a new Meta API integration — discovers APIs, fetches setup guides, authentication, permissions, and code examples. |
 | search-docs | `plugins/devtools/skills/search-docs/` | Searches Meta developer documentation for API guides, references, and tutorials. |
 | debug-access-token | `plugins/devtools/skills/debug-access-token/` | Diagnoses an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context — guides the developer to inspect it via the web debugger or `debug_token` API and interprets the returned metadata. |

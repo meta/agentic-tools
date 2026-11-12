@@ -24,7 +24,7 @@ Inspect active subscriptions, send test payloads, diagnose common issues (missin
 Pull compliance status, app settings, and DPO info. Categorize findings by severity (violations, required actions, recommendations) and provide remediation guidance.
 
 ### API Health
-Check rate limits, call volume (with optional endpoint filter and lookback window), and API deprecations. Rate limit thresholds: 80% = warning, 100% = throttled. Prioritize action items by severity.
+Check rate limits, call volume (with optional endpoint filter and lookback window), and the app's minimum supported version under the shared Graph API version-deprecation policy. This does not inspect actual API calls or check product-specific or upcoming deprecations. Rate limit thresholds: 80% = warning, 100% = throttled. Prioritize action items by severity.
 
 ### API Integration
 Guide a developer through setting up a Meta API integration (WhatsApp, Instagram, Messenger, Pages, Ads, etc.). Run multiple layered doc searches covering overview, authentication, permissions, endpoints, webhooks, and code examples. Cross-reference app permissions if app_id is provided. Produce a complete integration guide with prerequisites, setup steps, code examples, and common pitfalls.

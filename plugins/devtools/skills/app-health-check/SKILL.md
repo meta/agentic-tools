@@ -1,6 +1,6 @@
 ---
 name: app-health-check
-description: "Run a comprehensive health check on a Meta app — audits settings, security, compliance, app review status, rate limits, and API deprecations in one pass. Use when you want a full picture of an app's current state."
+description: "Run a comprehensive health check on a Meta app — audits settings, security, compliance, app review status, rate limits, and a shared Graph API version-deprecation check in one pass. Use when you want a full picture of an app's current state."
 allowed-tools: mcp__devtools__devtools_app, mcp__devtools__devtools_app_review, mcp__devtools__devtools_compliance, mcp__devtools__devtools_api_usage, mcp__devtools__devtools_app_list, mcp__devtools__devtools_skill_invocation
 license: MIT
 metadata:
@@ -32,7 +32,7 @@ This skill needs the Meta Social Technologies MCP server `devtools` (`https://mc
    - `devtools_compliance` with action `status` — open required actions, violations, recommendations
    - `devtools_app_review` with action `status` — current review state, pending submissions
    - `devtools_api_usage` with action `rate_limits` — current rate limit health
-   - `devtools_api_usage` with action `deprecations` — deprecated APIs needing migration
+   - `devtools_api_usage` with action `deprecations` — the app's minimum supported version under the shared Graph API version-deprecation policy, not all APIs it uses
 
 4. **Synthesize the report.** Organize findings into these sections:
 
@@ -58,7 +58,7 @@ This skill needs the Meta Social Technologies MCP server `devtools` (`https://mc
    **API Health**
    - Rate limit status: report the `overall_status` field as returned — `healthy`, `warning`, `critical`, `throttled`, or `unmetered`
    - Usage at or above the 70% warning band, flagging 90%+ as critical
-   - Deprecated APIs with severity and migration recommendations
+   - Report deprecations returned by the shared Graph API version-deprecation check. The list is normally empty because deprecated versions are excluded unless the app bypasses version deprecation. This does not inspect actual API calls or check product-specific or upcoming deprecations; an empty result does not prove that all APIs the app uses are supported.
 
    **Action Items**
    - Prioritized list of things to fix, ordered by severity (violations > required actions > recommendations > improvements)

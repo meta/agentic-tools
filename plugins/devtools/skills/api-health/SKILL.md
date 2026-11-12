@@ -1,6 +1,6 @@
 ---
 name: api-health
-description: "Monitor API health for a Meta app — check rate limits, call volume, and API deprecations. Use whenever a user asks whether their app is being throttled, is near its rate limits, how much of its call volume or quota is being used, or about deprecated Graph API versions. Prefer this skill over calling devtools_api_usage directly — it resolves the app, pulls rate limits, call volume, and deprecations together, and turns them into one prioritized report, including the cases an ad-hoc call misreads: an unmetered app is not the same as an idle one, and a capped usage_rate is not the same as headroom."
+description: "Monitor API health for a Meta app — check rate limits, call volume, and Graph API version deprecations. Use whenever a user asks whether their app is being throttled, is near its rate limits, how much of its call volume or quota is being used, or about deprecated Graph API versions. Prefer this skill over calling devtools_api_usage directly — it resolves the app, pulls rate limits, call volume, and deprecations together, and turns them into one prioritized report, including the cases an ad-hoc call misreads: an unmetered app is not the same as an idle one, and a capped usage_rate is not the same as headroom."
 allowed-tools: mcp__devtools__devtools_api_usage, mcp__devtools__devtools_app_list, mcp__devtools__devtools_skill_invocation
 license: MIT
 metadata:
@@ -12,7 +12,7 @@ metadata:
 
 # API Health
 
-Monitor API usage, rate limits, and deprecations for a Meta app.
+Monitor API usage, rate limits, and Graph API version deprecations for a Meta app.
 
 ## Prerequisites — MCP connection (read first)
 
@@ -29,7 +29,7 @@ This skill needs the Meta Social Technologies MCP server `devtools` (`https://mc
 3. **Collect API health data in parallel:**
    - `devtools_api_usage` with action `rate_limits` — current rate limit status per metric
    - `devtools_api_usage` with action `call_volume` — total calls vs quota
-   - `devtools_api_usage` with action `deprecations` — deprecated APIs and migration guides
+   - `devtools_api_usage` with action `deprecations` — the app's minimum supported version under the shared Graph API version-deprecation policy
 
 4. **Analyze and report:**
 
@@ -48,8 +48,9 @@ This skill needs the Meta Social Technologies MCP server `devtools` (`https://mc
    - Interpret it on the same bands the platform uses for rate limits: >= 0.7 approaching, >= 0.9 critical, 1.0 means the app is at its quota
    - If the user provided an endpoint filter, show filtered results
 
-   **API Deprecations**
-   - Latest platform version
+   **Graph API Versioning Check**
+   - This checks the app's minimum supported version against the shared Graph API version-deprecation policy. Normally the list is empty because deprecated versions are excluded unless the app bypasses version deprecation. It does not inspect actual API calls or check product-specific or upcoming deprecations.
+   - Latest Graph API version
    - Each deprecation with: type, name, severity, and recommendation
    - Link to migration guides where available
 
@@ -57,9 +58,8 @@ This skill needs the Meta Social Technologies MCP server `devtools` (`https://mc
    - Prioritized by severity:
      1. Throttled rate limits (immediate action needed)
      2. Critical rate limits (at or above 90% — throttling is imminent)
-     3. High-severity deprecations (migration required)
+     3. Deprecated Graph API version (follow the returned migration recommendation)
      4. Warning-level rate limits (monitor or optimize)
-     5. Low-severity deprecations (plan for future)
 
 5. **Offer deeper investigation** based on findings:
    - If throttled: offer to check call volume for specific endpoints (`endpoint` param) to find the hot path
@@ -84,5 +84,5 @@ The `lookback_minutes` parameter controls the time range (default: 1440 = 1 day)
 - Rate-limit bands: healthy < 70%, warning >= 70%, critical >= 90%, throttled at 100%. The server applies these and returns the verdict as `overall_status`, so report that field rather than recomputing from `usage_percentage`.
 - `usage_rate` in call_volume is a share of quota capped at 1.0 — 1.0 means the app is at its quota, and no value above it is reachable.
 - `unmetered` is not a clean bill of health: the app is exempt from metering or its user count has not been computed, so there is no headroom figure to read.
-- Deprecation severity matters — high-severity items may break on the next platform version upgrade.
+- An empty `deprecations` list is not confirmation that all APIs the app uses are supported.
 - Suggest the user checks API health regularly, especially before and after deploying changes that increase API call volume.

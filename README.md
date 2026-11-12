@@ -108,7 +108,7 @@ The skills live under `plugins/devtools/skills/` rather than a top-level `skills
 | `/app-review-prep` | App Review readiness check — requirements, privileges, and submission history |
 | `/debug-webhooks` | Troubleshoot webhook delivery issues — inspect, test, and fix subscriptions |
 | `/compliance-check` | Compliance audit — violations, required actions, and remediation guidance |
-| `/api-health` | API health monitoring — rate limits, call volume, and deprecation warnings |
+| `/api-health` | API health monitoring — rate limits, call volume, and a shared Graph API version-deprecation check; not an audit of actual calls |
 | `/api-integration` | Start a new API integration — fetches setup guides, auth, permissions, and code examples |
 | `/search-docs` | Search Meta developer documentation for API guides and references |
 | `/debug-access-token` | Diagnose an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context |
