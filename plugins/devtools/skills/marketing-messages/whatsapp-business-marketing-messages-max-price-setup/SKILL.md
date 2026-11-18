@@ -16,7 +16,7 @@ Help an end business choose and configure a maximum delivery price for a holiday
 
 ## Prerequisites — MCP connection (read first)
 
-This skill is grouped under `skills/marketing-messages/` in the `devtools` plugin and requires **only WhatsApp Business Tools MCP**. The plugin exposes that grouping directory as an additional Claude/Cursor skills root; Codex keeps its recursive `./skills/` root. The grouping folder is not itself a skill and defines no inherited instructions or new command namespace. Plugin installs bundle `devtools` only; skills-only installs bundle neither server. Add the WhatsApp server yourself ([setup](https://github.com/meta/agentic-tools#install-via-vercel-skillssh)) and complete OAuth in your client. The MCP metadata above describes the dependency; it is not an access grant or proof that the server is connected.
+This skill is grouped under `skills/marketing-messages/` in the `devtools` plugin and requires **only WhatsApp Business Tools MCP**. The plugin exposes that grouping directory as an additional Claude/Cursor skills root; Codex keeps its recursive `./skills/` root. The grouping folder is not itself a skill and defines no inherited instructions or new command namespace. Plugin installs bundle both `devtools` and `whatsapp_business_tools`; skills-only installs bundle neither server. Connect the WhatsApp server (skills-only installs add it first: [setup](https://github.com/meta/agentic-tools#install-via-vercel-skillssh)) and complete OAuth in your client. The MCP metadata above describes the dependency; it is not an access grant or proof that the server is connected.
 
 | Server | Endpoint | Owns |
 |--------|----------|------|

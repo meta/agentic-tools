@@ -19,7 +19,7 @@ Set up a WhatsApp Business integration end to end, or finish one that is partly 
 
 ## Prerequisites — MCP connections (read first)
 
-This skill needs two MCP servers, both streamable-http. Plugin installs bundle `devtools` only; skills-only installs such as `npx skills add` bundle neither. Add any missing server yourself ([setup](https://github.com/facebook/agentic-tools#install-via-vercel-skillssh)). The servers share no session, so carry `app_id` and `business_id` between them yourself.
+This skill needs two MCP servers, both streamable-http. Plugin installs bundle both servers; skills-only installs such as `npx skills add` bundle neither. Add any missing server yourself ([setup](https://github.com/facebook/agentic-tools#install-via-vercel-skillssh)). The servers share no session, so carry `app_id` and `business_id` between them yourself.
 
 | Server | Endpoint | Owns |
 |--------|----------|------|

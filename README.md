@@ -9,7 +9,7 @@ This repo is structured as a **multi-plugin marketplace**: each product group sh
 
 > Developer Platform workflows call **Meta Social Technologies MCP** (`https://mcp.facebook.com/devtools`). `whatsapp-business-integration` spans it and **WhatsApp Business Tools MCP**; `whatsapp-business-marketing-messages-max-price-setup` uses only the WhatsApp server.
 >
-> The `devtools` plugin does not bundle WhatsApp Business Tools MCP (`https://mcp.facebook.com/whatsapp_business_tools`). Add and authenticate that server separately as shown under [Install via Vercel](#install-via-vercel-skillssh), following each skill's declared dependencies.
+> The `devtools` plugin bundles both servers: Meta Social Technologies MCP (`devtools`) and WhatsApp Business Tools MCP (`whatsapp_business_tools`, `https://mcp.facebook.com/whatsapp_business_tools`). You do not need to connect both: connect one and the skills that use it work right away; connect the other when a skill you run needs it. Skills-only installs bundle neither; add them as shown under [Install via Vercel](#install-via-vercel-skillssh), following each skill's declared dependencies.
 
 ## Installation
 
@@ -20,18 +20,19 @@ claude plugin marketplace add facebook/agentic-tools
 claude plugin install devtools@facebook
 ```
 
-Then connect the MCP server (its config is bundled with the plugin):
+Then connect the MCP servers you need (their config is bundled with the plugin). You do not need both; connect the other one later when a skill needs it:
 
 ```
-/mcp → connect to devtools → authenticate
+/mcp → connect to devtools → authenticate                  # Developer Platform skills
+/mcp → connect to whatsapp_business_tools → authenticate   # WhatsApp skills
 ```
 
 ### Cursor
 
 Install the `devtools` plugin from the Cursor marketplace, then authenticate the MCP server:
 
-1. Open the Cursor marketplace and install the `devtools` plugin (published from this repo). The plugin bundles the skills and the **Meta Social Technologies MCP** config.
-2. Authenticate the remote **Meta Social Technologies MCP** server (`devtools`): **Settings → MCP**, then complete the OAuth flow.
+1. Open the Cursor marketplace and install the `devtools` plugin (published from this repo). The plugin bundles the skills and the **Meta Social Technologies MCP** and **WhatsApp Business Tools MCP** configs.
+2. Authenticate the remote server your skills use — **Meta Social Technologies MCP** (`devtools`) or **WhatsApp Business Tools MCP** (`whatsapp_business_tools`) — in **Settings → MCP**, then complete the OAuth flow. You do not need both; connect the other one when a skill needs it.
 
 To try it before it's published, copy or symlink `plugins/devtools` to `~/.cursor/plugins/local/devtools`, then run **Developer: Reload Window**.
 
@@ -59,7 +60,7 @@ Codex will run its OAuth flow on first use. Restart Codex after editing the conf
 
 `whatsapp-business-marketing-messages-max-price-setup` is grouped under `plugins/devtools/skills/marketing-messages/`. The leaf name and command identity are unchanged. Claude and Cursor explicitly scan both `./skills/` and `./skills/marketing-messages/` so existing flat skills remain available; Codex retains its recursive `./skills/` root. The grouping folder has no `SKILL.md`, inherited instructions or automatic namespace. Install the existing `devtools` plugin, or install just the skill from `meta/agentic-tools` with your client's skill installer. The repository organization does not rename the existing `facebook` marketplace ID or `devtools@facebook` plugin identifier.
 
-Add `whatsapp_business_tools` at `https://mcp.facebook.com/whatsapp_business_tools` and complete OAuth in your client. The skill declares this dependency in `metadata.mcp`; installation does not authenticate it or grant Max Price eligibility. You can connect MCP first and then invoke the installed skill. Some clients require a reload. Without the skill, the existing template tools retain their guidance and confirmation gates.
+Plugin installs bundle `whatsapp_business_tools` (`https://mcp.facebook.com/whatsapp_business_tools`); skills-only installs must add it. Complete OAuth in your client. The skill declares this dependency in `metadata.mcp`; installation does not authenticate it or grant Max Price eligibility. You can connect MCP first and then invoke the installed skill. Some clients require a reload. Without the skill, the existing template tools retain their guidance and confirmation gates.
 
 The skill uses the Holiday 2026 guide for ladder-up/leap strategies, newly opted-in versus dormant cohort advice, and country-specific A/B test planning. Recommendations are relative to current published rates, not automatic country overrides or resolved monetary bids. Live rates, reach estimates and monetary normalization are not supplied by the current account/template tools; missing inputs require a strategy explanation or explicit-value fallback. Exact-preview approval remains mandatory. The skill does not schedule price changes or send messages. For new account/phone setup, use `whatsapp-business-integration` separately.
 
@@ -163,7 +164,7 @@ agentic-tools/
             └── session-context.json  # Context injected at session start
 ```
 
-The Meta Social Technologies MCP is a remote server — it is not bundled as a process; users authenticate it in their agent.
+Both MCP servers are remote — they are not bundled as processes; users authenticate them in their agent.
 
 ## License
 

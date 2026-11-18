@@ -4,7 +4,7 @@
 
 ## MCP Tools
 
-The skills discover tools from their required connected MCP servers. Developer Platform workflows use `devtools`; `whatsapp-business-marketing-messages-max-price-setup` uses only `whatsapp_business_tools`, which must be added and authenticated separately. Installing a skill does not connect MCP.
+The skills discover tools from their required connected MCP servers. Developer Platform workflows use `devtools`; `whatsapp-business-marketing-messages-max-price-setup` uses only `whatsapp_business_tools`. Plugin installs bundle both servers, and users need not connect both: one connected server is enough for the skills that use it; connect the other when a skill needs it. Skills-only installs must add and authenticate them separately. Installing a skill does not connect MCP.
 
 ## Workflows
 
