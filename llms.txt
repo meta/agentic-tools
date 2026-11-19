@@ -32,6 +32,9 @@ Guide a developer through setting up a Meta API integration (WhatsApp, Instagram
 ### Search Docs
 Search Meta developer documentation with refined queries. Synthesize answers from results rather than just listing links.
 
+### Search Code Examples
+Search the docs for the operation, read the best guide pages with devtools_docs full_document (following offset until total_bytes for long pages), and return the matching code blocks verbatim with page, section and URL. Decide a block's language from its content, not its label. Label any correction, translation or combination of two documented examples as such; never write the call from memory.
+
 ### WhatsApp Business Integration
 Set up WhatsApp Business messaging end to end: app, business link, phone number, webhooks, template and first message. Needs both the devtools and whatsapp_business_tools MCP servers. Start with whatsapp_biz_businesses and whatsapp_biz_onboarding_status to resume rather than redo.
 

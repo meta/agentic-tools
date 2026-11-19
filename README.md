@@ -112,6 +112,7 @@ The skills live under `plugins/devtools/skills/` rather than a top-level `skills
 | `/api-health` | API health monitoring — rate limits, call volume, and a shared Graph API version-deprecation check; not an audit of actual calls |
 | `/api-integration` | Start a new API integration — fetches setup guides, auth, permissions, and code examples |
 | `/search-docs` | Search Meta developer documentation for API guides and references |
+| `/search-code-examples` | Find code examples for a Meta API task, quoted verbatim from the docs |
 | `/debug-access-token` | Diagnose an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context |
 | `/whatsapp-business-integration` | Set up WhatsApp Business messaging end to end, from the app to the first sent message |
 | `/app-setup` | Set up an app for a product integration — create or pick the app, connect a business portfolio, and add use cases |
@@ -150,6 +151,7 @@ agentic-tools/
         │   ├── api-health/
         │   ├── api-integration/
         │   ├── search-docs/
+        │   ├── search-code-examples/
         │   ├── debug-access-token/
         │   ├── whatsapp-business-integration/
         │   ├── app-setup/
