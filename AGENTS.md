@@ -20,7 +20,7 @@ These names are user-facing and easy to conflate. Use them exactly as written; d
 
 The plugin description is a single shared string, byte-identical across all five manifests. Change it in one place and propagate it to the other four.
 
-**`devtools` is a frozen identifier, not a name.** It is the plugin id, the MCP server key in every `mcp.json`, the `mcp__devtools__devtools_*` tool namespace in the twelve Developer Platform skills' `allowed-tools`, the `plugins/devtools/` path, and the `devtools@facebook` install target. It is pinned to the MCP endpoint `https://mcp.facebook.com/devtools`, so it does not follow display-name changes. Renaming it breaks existing installs.
+**`devtools` is a frozen identifier, not a name.** It is the plugin id, the MCP server key in every `mcp.json`, the `mcp__devtools__devtools_*` tool namespace in the thirteen Developer Platform skills' `allowed-tools`, the `plugins/devtools/` path, and the `devtools@facebook` install target. It is pinned to the MCP endpoint `https://mcp.facebook.com/devtools`, so it does not follow display-name changes. Renaming it breaks existing installs.
 
 ## How this repo is organized
 
@@ -61,6 +61,7 @@ Developer Platform skills require **Meta Social Technologies MCP** (`https://mcp
 | api-integration | `plugins/devtools/skills/api-integration/` | Guides a developer through setting up a new Meta API integration — discovers APIs, fetches setup guides, authentication, permissions, and code examples. |
 | search-docs | `plugins/devtools/skills/search-docs/` | Searches Meta developer documentation for API guides, references, and tutorials. |
 | search-code-examples | `plugins/devtools/skills/search-code-examples/` | Finds code examples for a Meta API task and returns them verbatim from the docs, with the page and section they came from. |
+| debug-errors | `plugins/devtools/skills/debug-errors/` | Explains a Meta API error code and subcode from the product's error-codes page, names the rate limit behind a throttling code, and checks live throttling for app-level Graph API limits. |
 | debug-access-token | `plugins/devtools/skills/debug-access-token/` | Diagnoses an access token issue (expired, wrong scopes, wrong app, invalid) without the token ever entering the agent context — guides the developer to inspect it via the web debugger or `debug_token` API and interprets the returned metadata. |
 | whatsapp-business-integration | `plugins/devtools/skills/whatsapp-business-integration/` | Drives a WhatsApp Business integration end to end — app prerequisites, business gates, phone onboarding, webhooks, template, first message. The only skill that spans both MCP servers. |
 | app-setup | `plugins/devtools/skills/app-setup/` | Sets up an app for a product integration — creates or picks the app, connects it to a business portfolio, and adds the use cases it needs. Other product skills can run it first and continue with the `app_id` and `business_id` it reports. |
@@ -100,6 +101,7 @@ Developer Platform skills require **Meta Social Technologies MCP** (`https://mcp
 │       │   ├── api-integration/
 │       │   ├── search-docs/
 │       │   ├── search-code-examples/
+│       │   ├── debug-errors/
 │       │   ├── debug-access-token/
 │       │   ├── whatsapp-business-integration/
 │       │   ├── app-setup/

@@ -1,6 +1,6 @@
 ---
 name: api-health
-description: "Monitor API health for a Meta app — check rate limits, call volume, and Graph API version deprecations. Use whenever a user asks whether their app is being throttled, is near its rate limits, how much of its call volume or quota is being used, or about deprecated Graph API versions. Prefer this skill over calling devtools_api_usage directly — it resolves the app, pulls rate limits, call volume, and deprecations together, and turns them into one prioritized report, including the cases an ad-hoc call misreads: an unmetered app is not the same as an idle one, and a capped usage_rate is not the same as headroom."
+description: "Monitor API health for a Meta app — check rate limits, call volume, and Graph API version deprecations. Use whenever a user asks whether their app is being throttled, is near its rate limits, how much of its call volume or quota is being used, or about deprecated Graph API versions. Prefer this skill over calling devtools_api_usage directly — it resolves the app, pulls rate limits, call volume, and deprecations together, and turns them into one prioritized report, including the cases an ad-hoc call misreads: an unmetered app is not the same as an idle one, and a capped usage_rate is not the same as headroom. For a call that already fails with an error code (for example code 613 or 4), use debug-errors instead."
 allowed-tools: mcp__devtools__devtools_api_usage, mcp__devtools__devtools_app_list, mcp__devtools__devtools_skill_invocation
 license: MIT
 metadata:

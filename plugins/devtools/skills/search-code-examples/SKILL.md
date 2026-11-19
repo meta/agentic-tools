@@ -64,3 +64,4 @@ This skill needs the Meta Social Technologies MCP server `devtools` (`https://mc
 
 - The user needs the app or permissions set up first → `/api-integration`
 - The user wants to subscribe to webhooks → `/webhook-setup`
+- The user's call already fails with an error code → `/debug-errors`

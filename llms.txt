@@ -35,6 +35,9 @@ Search Meta developer documentation with refined queries. Synthesize answers fro
 ### Search Code Examples
 Search the docs for the operation, read the best guide pages with devtools_docs full_document (following offset until total_bytes for long pages), and return the matching code blocks verbatim with page, section and URL. Decide a block's language from its content, not its label. Label any correction, translation or combination of two documented examples as such; never write the call from memory.
 
+### Debug Errors
+Find the product's error-codes page with search_docs, read the whole page with devtools_docs full_document, and quote the matching code and subcode rows with the table header. For a throttling code, quote the product's rate-limiting docs and the usage headers they name. Check devtools_api_usage rate_limits only when the docs, or the error message if no readable rate-limit page covers the code, say the app's Graph API request limit was reached; never for Marketing API or Ads Insights calls. It reads the call count only, so a healthy result doesn't prove the throttle cleared. Say only what tool output shows; never invent a meaning for an undocumented code.
+
 ### WhatsApp Business Integration
 Set up WhatsApp Business messaging end to end: app, business link, phone number, webhooks, template and first message. Needs both the devtools and whatsapp_business_tools MCP servers. Start with whatsapp_biz_businesses and whatsapp_biz_onboarding_status to resume rather than redo.
 
